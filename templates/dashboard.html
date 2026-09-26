@@ -870,6 +870,161 @@
                 padding: 24px;
             }
         }
+
+        /* Restore the simpler dashboard layout */
+        .welcome-panel,
+        .section-heading {
+            display: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            padding: 40px 20px;
+        }
+
+        .cards-grid {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .card {
+            min-height: 0;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .card-inner {
+            display: block;
+            min-height: 0;
+            padding: 0;
+        }
+
+        .card-top {
+            display: none;
+        }
+
+        .card-icon {
+            display: inline-block;
+            width: auto;
+            height: auto;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            color: inherit;
+            font-size: 70px;
+            margin-bottom: 24px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .card:nth-child(2) .card-icon {
+            border: 0;
+            background: transparent;
+            color: inherit;
+        }
+
+        .card h2 {
+            font-size: 28px;
+            margin-bottom: 14px;
+        }
+
+        .card p {
+            max-width: none;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .card-footer {
+            display: block;
+            margin-top: 0;
+        }
+
+        .card-action {
+            display: flex;
+        }
+
+        .btn {
+            min-width: 150px;
+            padding: 14px 32px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        .card-hint {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px 16px;
+            }
+
+            .card {
+                padding: 28px 20px;
+            }
+
+            .card h2 {
+                font-size: 22px;
+            }
+
+            .card p {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            .card-icon {
+                font-size: 56px;
+                margin-bottom: 16px;
+            }
+
+            .card-action {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                min-width: 0;
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 12px;
+            }
+
+            .card {
+                padding: 24px 16px;
+            }
+
+            .card-icon {
+                font-size: 48px;
+                margin-bottom: 12px;
+            }
+
+            .card h2 {
+                font-size: 20px;
+            }
+
+            .card p {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+
+            .btn {
+                padding: 11px 20px;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -889,23 +1044,10 @@
     
     <!-- Main Content -->
     <div class="container">
-        <!-- Workspace header -->
-        <section class="welcome-panel">
-            <span class="eyebrow">CONTROL CENTER</span>
-            <h1>Your automation workspace</h1>
-            <p>Keep an eye on active processes and launch your next WhatsApp automation from one focused workspace.</p>
-            <div class="welcome-meta">
-                <span class="meta-chip">● Workspace online</span>
-                <span class="meta-chip">2 tools available</span>
-            </div>
-        </section>
-
-        <div class="section-heading">
-            <div>
-                <span class="section-label">WORKSPACE</span>
-                <h2>Choose an action</h2>
-            </div>
-            <span class="section-count">Quick access</span>
+        <!-- Header -->
+        <div class="header">
+            <h1>Danish Inside</h1>
+            <p>Manage and monitor your automation processes</p>
         </div>
         
         <!-- Cards Grid -->
@@ -913,17 +1055,11 @@
             <!-- Card 1: Process Status -->
             <div class="card">
                 <div class="card-inner">
-                    <div class="card-top">
-                        <div class="card-icon">◉</div>
-                        <span class="card-arrow">↗</span>
-                    </div>
+                    <div class="card-icon">📊</div>
                     <h2>Process Status</h2>
                     <p>Monitor all your running processes in real-time. View detailed information and manage them with ease.</p>
-                    <div class="card-footer">
-                        <div class="card-action">
-                            <a href="/process-status" class="btn">Open status <span>↗</span></a>
-                        </div>
-                        <span class="card-hint">Live monitoring</span>
+                    <div class="card-action">
+                        <a href="/process-status" class="btn">View Status</a>
                     </div>
                 </div>
             </div>
@@ -931,17 +1067,11 @@
             <!-- Card 2: Start Process -->
             <div class="card">
                 <div class="card-inner">
-                    <div class="card-top">
-                        <div class="card-icon">＋</div>
-                        <span class="card-arrow">↗</span>
-                    </div>
+                    <div class="card-icon">🚀</div>
                     <h2>Start Process</h2>
                     <p>Create and launch a new automation process. Configure targets, delays, and upload required files.</p>
-                    <div class="card-footer">
-                        <div class="card-action">
-                            <a href="/start" class="btn">Start new <span>↗</span></a>
-                        </div>
-                        <span class="card-hint">New automation</span>
+                    <div class="card-action">
+                        <a href="/start" class="btn">Start New</a>
                     </div>
                 </div>
             </div>
