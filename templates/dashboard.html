@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Next Wave Automation</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -1028,19 +1029,320 @@
                 font-size: 13px;
             }
         }
+</style>
+    <link rel="stylesheet" href="/app-theme.css">
+    <style>
+        /* Reference-inspired neon dashboard */
+        body.dashboard-page {
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 50% 18%, rgba(255, 0, 38, 0.12), transparent 28%),
+                linear-gradient(145deg, #090000 0%, #120000 52%, #050000 100%) !important;
+        }
+
+        body.dashboard-page::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(135deg, transparent 45%, rgba(255, 0, 32, 0.04) 46%, transparent 70%);
+        }
+
+        .dashboard-page .navbar {
+            max-width: 980px;
+            margin: 18px auto 0;
+            padding: 12px 20px;
+            border: 2px solid #ff1638 !important;
+            border-radius: 20px;
+            background: rgba(8, 0, 0, 0.88) !important;
+            box-shadow:
+                0 0 8px rgba(255, 22, 56, 0.95),
+                0 0 24px rgba(255, 0, 34, 0.42),
+                inset 0 0 18px rgba(255, 0, 34, 0.12);
+        }
+
+        .dashboard-page .navbar-content {
+            max-width: none;
+        }
+
+        .dashboard-page .logo {
+            gap: 14px;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .dashboard-page .logo-icon {
+            width: auto;
+            height: auto;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            color: #00f269;
+            font-size: 42px;
+            filter: drop-shadow(0 0 8px rgba(0, 242, 105, 0.8));
+        }
+
+        .dashboard-page .logo-text {
+            color: #fff !important;
+            font-size: clamp(18px, 2.5vw, 27px);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.38);
+        }
+
+        .dashboard-page .admin-link,
+        .dashboard-page .logout {
+            border: 2px solid #ff1638 !important;
+            border-radius: 13px;
+            color: #fff !important;
+            background: rgba(14, 0, 0, 0.8) !important;
+            box-shadow: 0 0 9px rgba(255, 22, 56, 0.55), inset 0 0 10px rgba(255, 0, 34, 0.1);
+            font-size: 16px;
+            padding: 12px 20px;
+        }
+
+        .dashboard-page .admin-link i {
+            color: #ffd24a;
+            margin-right: 6px;
+        }
+
+        .dashboard-page .logout i {
+            margin-right: 6px;
+        }
+
+        .dashboard-page .admin-link:hover,
+        .dashboard-page .logout:hover {
+            border-color: #ff526b !important;
+            background: rgba(100, 0, 12, 0.65) !important;
+            box-shadow: 0 0 14px rgba(255, 22, 56, 0.85);
+        }
+
+        .dashboard-page .container {
+            max-width: 1024px;
+            padding: 28px 24px 80px;
+        }
+
+        .dashboard-page .header {
+            display: block;
+            margin-bottom: 28px;
+            padding: 27px 24px 22px;
+            border: 2px solid #ff1638;
+            border-radius: 19px;
+            background: rgba(23, 0, 0, 0.78);
+            box-shadow:
+                0 0 9px rgba(255, 22, 56, 0.9),
+                0 0 28px rgba(255, 0, 34, 0.3),
+                inset 0 0 25px rgba(255, 0, 34, 0.08);
+        }
+
+        .dashboard-page .header-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .dashboard-page .header-title span {
+            width: min(150px, 18vw);
+            height: 2px;
+            background: #ff1638;
+            box-shadow: 0 0 8px #ff1638, 0 0 18px rgba(255, 22, 56, 0.8);
+        }
+
+        .dashboard-page .header h1 {
+            margin: 0 0 10px;
+            color: #fff !important;
+            font-size: clamp(34px, 5vw, 50px);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.65), 0 0 24px rgba(255, 22, 56, 0.75);
+        }
+
+        .dashboard-page .header p {
+            margin: 0;
+            color: #e5dfe1 !important;
+            font-size: 19px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.16);
+        }
+
+        .dashboard-page .cards-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .dashboard-page .card {
+            min-height: 318px;
+            padding: 0;
+            border: 2px solid #ff1638 !important;
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(26, 0, 0, 0.96), rgba(7, 0, 0, 0.98)) !important;
+            box-shadow:
+                0 0 9px rgba(255, 22, 56, 0.9),
+                0 0 25px rgba(255, 0, 34, 0.32),
+                inset 0 0 24px rgba(255, 0, 34, 0.1) !important;
+        }
+
+        .dashboard-page .card::before {
+            display: none;
+        }
+
+        .dashboard-page .card::after {
+            background: linear-gradient(90deg, transparent, rgba(255, 56, 80, 0.12), transparent);
+        }
+
+        .dashboard-page .card:hover {
+            transform: translateY(-6px);
+            border-color: #ff526b !important;
+            box-shadow:
+                0 0 13px rgba(255, 22, 56, 1),
+                0 0 36px rgba(255, 0, 34, 0.5),
+                inset 0 0 28px rgba(255, 0, 34, 0.14) !important;
+        }
+
+        .dashboard-page .card-inner {
+            min-height: 318px;
+            padding: 27px;
+        }
+
+        .dashboard-page .card-icon {
+            display: grid;
+            width: 78px;
+            height: 78px;
+            place-items: center;
+            margin: 0 0 25px;
+            border: 2px solid #ff1638;
+            border-radius: 15px;
+            background: rgba(30, 0, 0, 0.8);
+            color: #23aaff;
+            font-size: 38px;
+            animation: none;
+            box-shadow: 0 0 8px rgba(255, 22, 56, 0.95), inset 0 0 14px rgba(255, 0, 34, 0.15);
+        }
+
+        .dashboard-page .card:nth-child(2) .card-icon {
+            border-color: #ff1638;
+            background: rgba(42, 10, 0, 0.82);
+            color: #ff982b;
+            box-shadow: 0 0 8px rgba(255, 22, 56, 0.95), inset 0 0 14px rgba(255, 113, 0, 0.14);
+        }
+
+        .dashboard-page .card h2 {
+            margin-bottom: 12px;
+            color: #fff !important;
+            font-size: 30px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .dashboard-page .card p {
+            min-height: 72px;
+            margin-bottom: 22px;
+            color: #eee5e7 !important;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .dashboard-page .card-action {
+            display: block;
+        }
+
+        .dashboard-page .btn {
+            display: flex;
+            width: 100%;
+            min-width: 0;
+            padding: 14px 20px;
+            border: 2px solid #00ff68 !important;
+            border-radius: 14px;
+            color: #fff !important;
+            background: linear-gradient(180deg, #10df55, #00b943) !important;
+            box-shadow: 0 0 9px rgba(0, 255, 104, 0.95), 0 0 22px rgba(0, 255, 104, 0.45);
+            font-size: 19px;
+            font-weight: 800;
+            text-shadow: 0 1px 2px rgba(0, 50, 15, 0.65);
+        }
+
+        .dashboard-page .btn:hover {
+            border-color: #73ff9d !important;
+            background: linear-gradient(180deg, #24f46a, #00c94a) !important;
+            box-shadow: 0 0 14px rgba(0, 255, 104, 1), 0 0 34px rgba(0, 255, 104, 0.55);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 720px) {
+            .dashboard-page .navbar {
+                margin: 10px 12px 0;
+                padding: 11px 13px;
+            }
+
+            .dashboard-page .navbar-content {
+                flex-wrap: wrap;
+            }
+
+            .dashboard-page .logo {
+                font-size: 18px;
+            }
+
+            .dashboard-page .logo-icon {
+                font-size: 32px;
+            }
+
+            .dashboard-page .admin-link,
+            .dashboard-page .logout {
+                padding: 9px 11px;
+                font-size: 12px;
+            }
+
+            .dashboard-page .container {
+                padding: 20px 14px 50px;
+            }
+
+            .dashboard-page .header-title {
+                gap: 12px;
+            }
+
+            .dashboard-page .header-title span {
+                width: 12vw;
+            }
+
+            .dashboard-page .header h1 {
+                font-size: 32px;
+            }
+
+            .dashboard-page .header p {
+                font-size: 14px;
+            }
+
+            .dashboard-page .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .dashboard-page .card,
+            .dashboard-page .card-inner {
+                min-height: 0;
+            }
+
+            .dashboard-page .card-inner {
+                padding: 24px;
+            }
+
+            .dashboard-page .card h2 {
+                font-size: 25px;
+            }
+
+            .dashboard-page .card p {
+                min-height: 0;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="app-page dashboard-page">
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-content">
             <a href="#" class="logo">
-                <span class="logo-icon">💬</span>
+                <span class="logo-icon"><i class="fab fa-whatsapp"></i></span>
                 <span class="logo-text">Next Wave Automation</span>
             </a>
             <div style="display: flex; gap: 12px; align-items: center;">
-                <a href="/admin" class="admin-link">⚙️ Admin</a>
-                <a href="/logout" class="logout">Logout</a>
+                <a href="/admin" class="admin-link"><i class="fas fa-crown"></i> Admin</a>
+                <a href="/logout" class="logout"><i class="fas fa-right-from-bracket"></i> Logout</a>
             </div>
         </div>
     </nav>
@@ -1049,7 +1351,11 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>Danish Inside</h1>
+            <div class="header-title">
+                <span></span>
+                <h1>Danish Inside</h1>
+                <span></span>
+            </div>
             <p>Manage and monitor your automation processes</p>
         </div>
         
@@ -1058,7 +1364,7 @@
             <!-- Card 1: Process Status -->
             <div class="card">
                 <div class="card-inner">
-                    <div class="card-icon">📊</div>
+                    <div class="card-icon"><i class="fas fa-chart-simple"></i></div>
                     <h2>Process Status</h2>
                     <p>Monitor all your running processes in real-time. View detailed information and manage them with ease.</p>
                     <div class="card-action">
@@ -1070,7 +1376,7 @@
             <!-- Card 2: Start Process -->
             <div class="card">
                 <div class="card-inner">
-                    <div class="card-icon">🚀</div>
+                    <div class="card-icon"><i class="fas fa-rocket"></i></div>
                     <h2>Start Process</h2>
                     <p>Create and launch a new automation process. Configure targets, delays, and upload required files.</p>
                     <div class="card-action">
